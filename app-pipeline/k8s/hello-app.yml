@@ -1,0 +1,35 @@
+# 1. The "hello-app" Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-app
+        # This is a standard, reliable test image from Google
+        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+        ports:
+        - containerPort: 8080 # The app inside the container listens on port 8080
+---
+# 2. The "hello-app" Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello # This must match the pod's label
+  ports:
+    - protocol: TCP
+      port: 80 # The service will be available on port 80
+      targetPort: 8080 # Forward traffic to the container's port 8080

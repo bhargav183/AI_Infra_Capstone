@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: . # Use the current directory for the build
-          file: ./k8s/Dockerfile # Specify the path to your Dockerfile
+          file: ./app-pipeline/k8s/Dockerfile # Specify the path to your Dockerfile
           push: true # Push the image to the registry
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-k8s-app:latest
 

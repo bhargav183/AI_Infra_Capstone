@@ -16,7 +16,7 @@ spec:
       containers:
       - name: hello-app
         # This is a standard, reliable test image from Google
-        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+        image: harveyspec03/hello-k8s-app:latest
         ports:
         - containerPort: 8080 # The app inside the container listens on port 8080
 ---
